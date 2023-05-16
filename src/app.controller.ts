@@ -1,0 +1,18 @@
+import { Controller, Get, Param } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: number): string {
+    return id == 1 ? `This is a cat` : `This is a dog`;
+    // return `This action returns a #${id} cat`;
+  }
+}
